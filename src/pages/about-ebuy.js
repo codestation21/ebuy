@@ -1,4 +1,4 @@
-import { Container, Box } from "@mui/material";
+import { Container, Box, NoSsr } from "@mui/material";
 
 //Layout
 import Layout from "Layout/Layout";

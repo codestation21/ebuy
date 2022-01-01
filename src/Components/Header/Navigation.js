@@ -35,35 +35,28 @@ const Navigation = () => {
                 </ListItem>
                 <ListItem>
                     <ButtonBase>
-                        <Link href="/">
+                        <Link href="/about-ebuy">
                             <a>About</a>
                         </Link>
                     </ButtonBase>
                 </ListItem>
                 <ListItem>
                     <ButtonBase>
-                        <Link href="/">
+                        <Link href="/shop">
                             <a>Shop</a>
                         </Link>
                     </ButtonBase>
                 </ListItem>
                 <ListItem>
                     <ButtonBase>
-                        <Link href="/">
+                        <Link href="/ebuy-news">
                             <a>Blog</a>
                         </Link>
                     </ButtonBase>
                 </ListItem>
                 <ListItem>
                     <ButtonBase>
-                        <Link href="/">
-                            <a>News</a>
-                        </Link>
-                    </ButtonBase>
-                </ListItem>
-                <ListItem>
-                    <ButtonBase>
-                        <Link href="/">
+                        <Link href="/contact-ebuy">
                             <a>Contact</a>
                         </Link>
                     </ButtonBase>
@@ -98,35 +91,28 @@ const Navigation = () => {
                     </ListItem>
                     <ListItem>
                         <ButtonBase>
-                            <Link href="/">
+                            <Link href="/about-ebuy">
                                 <a>About</a>
                             </Link>
                         </ButtonBase>
                     </ListItem>
                     <ListItem>
                         <ButtonBase>
-                            <Link href="/">
+                            <Link href="/shop">
                                 <a>Shop</a>
                             </Link>
                         </ButtonBase>
                     </ListItem>
                     <ListItem>
                         <ButtonBase>
-                            <Link href="/">
+                            <Link href="/ebuy-news">
                                 <a>Blog</a>
                             </Link>
                         </ButtonBase>
                     </ListItem>
                     <ListItem>
                         <ButtonBase>
-                            <Link href="/">
-                                <a>News</a>
-                            </Link>
-                        </ButtonBase>
-                    </ListItem>
-                    <ListItem>
-                        <ButtonBase>
-                            <Link href="/">
+                            <Link href="/contact-ebuy">
                                 <a>Contact</a>
                             </Link>
                         </ButtonBase>
