@@ -1,100 +1,82 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Box } from "@mui/material";
-import { useKeenSlider } from "keen-slider/react";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
 //KeenSlider CSS
-import "keen-slider/keen-slider.min.css";
 
 //Styles
 import useStyles from "Styles/Home/Carousels.styles";
 
 //Arrows
-import { ArrowLeft, ArrowRight } from "Utilis/Arrows";
+import { DotButton, PrevButton, NextButton } from "Utilis/Arrows";
 
 //Data
 import CarouselData from "Data/Home/Carousels.data";
 
 const Carousels = () => {
+    const autoplay = useRef(
+        Autoplay(
+            { delay: 5000, stopOnInteraction: true },
+            (emblaRoot) => emblaRoot.parentElement
+        )
+    );
+    const [viewportRef, embla] = useEmblaCarousel({ skipSnaps: false, loop: true }, [autoplay.current]);
+    const [prevBtnEnabled, setPrevBtnEnabled] = useState(false);
+    const [nextBtnEnabled, setNextBtnEnabled] = useState(false);
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [scrollSnaps, setScrollSnaps] = useState([]);
     const classes = useStyles();
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [pause, setPause] = useState(false);
-    const timer = useRef()
-    const [sliderRef, slider] = useKeenSlider({
-        initial: 0,
-        loop: true,
-        duration: 1000,
-        dragStart: () => {
-            setPause(true)
-        },
-        dragEnd: () => {
-            setPause(false)
-        },
-        slideChanged(s) {
-            setCurrentSlide(s.details().relativeSlide)
-        }
-    })
+
+    const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
+    const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
+    const scrollTo = useCallback((index) => embla && embla.scrollTo(index), [
+        embla
+    ]);
+
+    const onSelect = useCallback(() => {
+        if (!embla) return;
+        setSelectedIndex(embla.selectedScrollSnap());
+        setPrevBtnEnabled(embla.canScrollPrev());
+        setNextBtnEnabled(embla.canScrollNext());
+    }, [embla, setSelectedIndex]);
+
     useEffect(() => {
-        sliderRef.current.addEventListener("mouseover", () => {
-            setPause(true)
-        })
-        sliderRef.current.addEventListener("mouseout", () => {
-            setPause(false)
-        })
-    }, [sliderRef]);
-    useEffect(() => {
-        timer.current = setInterval(() => {
-            if (!pause && slider) {
-                slider.next()
-            }
-        }, 5000)
-        return () => {
-            clearInterval(timer.current)
-        }
-    }, [pause, slider])
+        if (!embla) return;
+        onSelect();
+        setScrollSnaps(embla.scrollSnapList());
+        embla.on("select", onSelect);
+    }, [embla, setScrollSnaps, onSelect]);
     return (
         <Box sx={{ position: "relative" }}>
-            <Box className="navigation-wrapper">
-                <div ref={sliderRef} className={`keen-slider ${classes.Container}`}>
-                    {CarouselData &&
-                        CarouselData.map((carousel, i) => (
-                            <div key={i} className="keen-slider__slide number-slide1">
-                                <Link href={carousel.url}>
-                                    <a className={classes.Link}>
-                                        <Box component="img" src={carousel.image} alt="Carousel" />
-                                    </a>
-                                </Link>
-                            </div>
-                        ))
-                    }
+            <div className={`embla ${classes.Embla}`}>
+                <div className="embla__viewport" ref={viewportRef}>
+                    <div className={`embla__container ${classes.EmblaContainer}`}>
+                        {CarouselData &&
+                            CarouselData.map((carousel, i) => (
+                                <div key={i} className={`embla__slide ${classes.EmblaSlide}`}>
+                                    <Link href={carousel.url}>
+                                        <a className={classes.Link}>
+                                            <Box component="img" src={carousel.image} alt="Carousel" />
+                                        </a>
+                                    </Link>
+                                </div>
+                            ))
+                        }
+                    </div>
                 </div>
-                {slider && (
-                    <Box>
-                        <ArrowLeft
-                            onClick={(e) => e.stopPropagation() || slider.prev()}
-                            disabled={currentSlide === 0}
-                        />
-                        <ArrowRight
-                            onClick={(e) => e.stopPropagation() || slider.next()}
-                            disabled={currentSlide === slider.details().size - 1}
-                        />
-                    </Box>
-                )}
-            </Box>
-            {slider && (
-                <div className={classes.DotBtnContainer}>
-                    {[...Array(slider.details().size).keys()].map((idx) => {
-                        return (
-                            <button
-                                key={idx}
-                                onClick={() => {
-                                    slider.moveToSlideRelative(idx)
-                                }}
-                                className={"dot" + (currentSlide === idx ? " active" : "")}
-                            />
-                        )
-                    })}
-                </div>
-            )}
+                <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
+                <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
+            </div>
+            <div className={`embla__dots ${classes.DotBtnContainer}`}>
+                {scrollSnaps.map((_, index) => (
+                    <DotButton
+                        key={index}
+                        selected={index === selectedIndex}
+                        onClick={() => scrollTo(index)}
+                    />
+                ))}
+            </div>
         </Box>
     );
 };

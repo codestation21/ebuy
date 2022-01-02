@@ -2,8 +2,16 @@ import { makeStyles } from "@mui/styles";
 import theme from "Theme";
 
 const useStyles = makeStyles({
-    Container: {
-        boxShadow: "0 12px 60px -20px #09090938",
+    Embla: {
+        overflow: "hidden",
+        height: "100%"
+    },
+    EmblaContainer: {
+        display: "flex"
+    },
+    EmblaSlide: {
+        position: "relative",
+        flex: "0 0 100%"
     },
     Link: {
         width: "100%",
@@ -13,8 +21,6 @@ const useStyles = makeStyles({
         "&& img": {
             width: "100%",
             height: "100%",
-            objectFit: "cover",
-            objectPosition: "top"
         },
     },
     DotBtnContainer: {
@@ -32,7 +38,7 @@ const useStyles = makeStyles({
             borderRadius: "50%",
             boxShadow: `0 0 20px ${theme.palette.primary.box_shadow}`,
             transition: "0.3s ease-in-out",
-            "&.active": {
+            "&.is-selected": {
                 background: theme.palette.primary.light,
                 width: "30px",
                 height: "10px",
@@ -43,18 +49,20 @@ const useStyles = makeStyles({
     ArrowLeft: {
         position: "absolute",
         top: "50%",
-        left: "0.5%",
+        left: "1%",
         cursor: "pointer",
         transition: "0.2s ease",
+        padding: "8px",
+        borderRadius: "50%",
         "&& svg": {
-            fontSize: "22px",
+            fontSize: "20px",
             transition: "0.2s ease",
             "@media (max-width: 640px)": {
                 fontSize: "18px",
             }
         },
         "&:hover": {
-            left: "0%",
+            left: "0.5%",
             svg: {
                 fontSize: "24px",
                 "@media (max-width: 640px)": {
@@ -66,18 +74,20 @@ const useStyles = makeStyles({
     ArrowRight: {
         position: "absolute",
         top: "50%",
-        right: "0.5%",
+        right: "1%",
         cursor: "pointer",
         transition: "0.2s ease",
+        padding: "8px",
+        borderRadius: "50%",
         "&& svg": {
-            fontSize: "22px",
+            fontSize: "20px",
             transition: "0.2s ease",
             "@media (max-width: 640px)": {
                 fontSize: "18px",
             }
         },
         "&:hover": {
-            right: "0%",
+            right: "0.5%",
             svg: {
                 fontSize: "24px",
                 "@media (max-width: 640px)": {

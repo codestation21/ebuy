@@ -1,4 +1,4 @@
-import { Box, SvgIcon } from "@mui/material";
+import { ButtonBase, SvgIcon } from "@mui/material";
 
 //Custom Icon
 import { ArrowLeftIcon, ArrowRightIcon } from "Utilis/Icons";
@@ -6,33 +6,46 @@ import { ArrowLeftIcon, ArrowRightIcon } from "Utilis/Icons";
 //Styles
 import useStyles from "Styles/Home/Carousels.styles";
 
-export const ArrowLeft = (props) => {
-    const classes = useStyles();
-    const disabeld = props.disabled ? " arrow--disabled" : ""
+
+
+import React from "react";
+
+export const DotButton = ({ selected, onClick }) => {
     return (
-        <Box
-            onClick={props.onClick}
-            className={"arrow arrow--left" + disabeld}
-            className={classes.ArrowLeft}
+        <ButtonBase
+            className={`embla__dot ${selected ? "is-selected" : ""}`}
+            type="button"
+            onClick={onClick}
+        />
+    )
+};
+
+export const PrevButton = ({ enabled, onClick }) => {
+    const classes = useStyles();
+    return (
+        <ButtonBase
+            className={`embla__button embla__button--prev ${classes.ArrowLeft}`}
+            onClick={onClick}
+            disabled={!enabled}
         >
             <SvgIcon viewBox="0 0 13 23">
                 {ArrowLeftIcon}
             </SvgIcon>
-        </Box>
+        </ButtonBase>
     )
-}
-export const ArrowRight = (props) => {
+};
+
+export const NextButton = ({ enabled, onClick }) => {
     const classes = useStyles();
-    const disabeld = props.disabled ? " arrow--disabled" : ""
     return (
-        <Box
-            onClick={props.onClick}
-            className={"arrow arrow--right" + disabeld}
-            className={classes.ArrowRight}
+        <ButtonBase
+            className={`embla__button embla__button--next ${classes.ArrowRight}`}
+            onClick={onClick}
+            disabled={!enabled}
         >
             <SvgIcon viewBox="0 0 13 23">
                 {ArrowRightIcon}
             </SvgIcon>
-        </Box>
+        </ButtonBase>
     )
-}
+};
