@@ -3,12 +3,12 @@ import theme from "Theme";
 
 const useStyles = makeStyles({
     Container: {
-        boxShadow: "0 12px 60px -20px #09090938"
+        boxShadow: "0 12px 60px -20px #09090938",
     },
     Link: {
         width: "100%",
         display: "block",
-        height: "44em",
+        height: "100%",
         position: "relative",
         "&& img": {
             width: "100%",
@@ -16,24 +16,6 @@ const useStyles = makeStyles({
             objectFit: "cover",
             objectPosition: "top"
         },
-        "@media(max-width: 992px)": {
-            height: "32em",
-        },
-        "@media (max-width: 768px)": {
-            height: "26.5em"
-        },
-        "@media (max-width: 640px)": {
-            height: "18em",
-            marginTop: "3em"
-        },
-        "@media (max-width: 480px)": {
-            height: "14em",
-            marginTop: "2.5em"
-        },
-        "@media (max-width: 360px)": {
-            height: "9em",
-            marginTop: "2.5em"
-        }
     },
     DotBtnContainer: {
         position: "absolute",
