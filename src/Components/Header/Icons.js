@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Box, List, ListItem, ButtonBase, Button, SvgIcon, Typography } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
+import Link from "next/link";
 //Custome Icon
 import { SearchIcon, ProfileIcon, LoveIcon, BagIcon } from "Utilis/Icons";
 
@@ -79,20 +80,28 @@ const Icons = () => {
                     </ButtonBase>
                 </ListItem>
                 <ListItem>
-                    <ButtonBase>
-                        <SvgIcon >
-                            {LoveIcon}
-                        </SvgIcon>
+                    <ButtonBase sx={{ a: { textDecoration: "none", color: "#222529", mt: "3px" } }}>
+                        <Link href="/user/profile/id">
+                            <a>
+                                <SvgIcon >
+                                    {LoveIcon}
+                                </SvgIcon>
+                            </a>
+                        </Link>
                     </ButtonBase>
                 </ListItem>
                 <ListItem>
-                    <ButtonBase>
-                        <SvgIcon viewBox="0 0 16 23">
-                            {BagIcon}
-                        </SvgIcon>
-                        <Typography variant="body1" component="div" className={classes.BagItemCount}>
-                            5
-                        </Typography>
+                    <ButtonBase sx={{ a: { textDecoration: "none", color: "#222529", mt: "3px" } }}>
+                        <Link href="/cart/index">
+                            <a>
+                                <SvgIcon viewBox="0 0 16 23">
+                                    {BagIcon}
+                                </SvgIcon>
+                                <Typography variant="body1" component="div" className={classes.BagItemCount}>
+                                    5
+                                </Typography>
+                            </a>
+                        </Link>
                     </ButtonBase>
                 </ListItem>
             </List>

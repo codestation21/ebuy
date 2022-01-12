@@ -49,6 +49,13 @@ const Navigation = () => {
                 </ListItem>
                 <ListItem>
                     <ButtonBase>
+                        <Link href="/vendors/index">
+                            <a>Vendors</a>
+                        </Link>
+                    </ButtonBase>
+                </ListItem>
+                <ListItem>
+                    <ButtonBase>
                         <Link href="/ebuy-news">
                             <a>Blog</a>
                         </Link>
@@ -100,6 +107,13 @@ const Navigation = () => {
                         <ButtonBase>
                             <Link href="/shop">
                                 <a>Shop</a>
+                            </Link>
+                        </ButtonBase>
+                    </ListItem>
+                    <ListItem>
+                        <ButtonBase>
+                            <Link href="/vendors/index">
+                                <a>Vendors</a>
                             </Link>
                         </ButtonBase>
                     </ListItem>

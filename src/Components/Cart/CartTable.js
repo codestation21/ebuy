@@ -1,4 +1,5 @@
 import { Box, List, ListItem, ButtonBase, SvgIcon, Typography } from "@mui/material";
+import Link from "next/link";
 
 //Custom Icon
 import { CheckoutIcon } from "Utilis/Icons";
@@ -48,10 +49,14 @@ const CartTable = () => {
                 </ListItem>
             </List >
             <ButtonBase className={classes.ProceedButton}>
-                Proceed to Checkout
-                <SvgIcon viewBox="0 0 24 24">
-                    {CheckoutIcon}
-                </SvgIcon>
+                <Link href="/shipping/index">
+                    <a>
+                        Proceed to Checkout
+                        <SvgIcon viewBox="0 0 24 24">
+                            {CheckoutIcon}
+                        </SvgIcon>
+                    </a>
+                </Link>
             </ButtonBase>
         </Box >
     );

@@ -19,7 +19,7 @@ const Products = () => {
                     {ProductsData &&
                         ProductsData.map((product, i) => (
                             <Grid item md={2.4} mds={4} sms={6} xs={12} key={i}>
-                                <Link href="/">
+                                <Link href="/products/id">
                                     <a className={classes.Link}>
                                         <Box
                                             component="img"

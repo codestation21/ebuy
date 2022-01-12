@@ -64,7 +64,7 @@ const Vendors = () => {
                                         </Typography>
                                     </Typography>
                                     <Box sx={{ textAlign: "right", mt: { sms: "0px", xs: "20px" } }}>
-                                        <Link href="/">
+                                        <Link href="/vendors/products/index">
                                             <a>
                                                 <ButtonBase className={classes.ViewButton}>
                                                     Visit Store

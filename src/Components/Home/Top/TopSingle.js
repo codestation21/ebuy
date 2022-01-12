@@ -17,7 +17,7 @@ const TopSingle = ({ title, products }) => {
             <Box>
                 {products &&
                     products.slice(0, 3).map((product, i) => (
-                        <Link href="/" key={i}>
+                        <Link href="/products/id" key={i}>
                             <a className={classes.Link}>
                                 <Grid container spacing={2} sx={{ alignItems: "center" }}>
                                     <Grid item xs={3.5}>

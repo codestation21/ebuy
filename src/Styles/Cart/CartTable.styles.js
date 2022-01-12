@@ -45,9 +45,14 @@ const useStyles = makeStyles({
         borderRadius: "4px",
         fontWeight: theme.typography.semiBold,
         marginTop: "15px",
-        "&& svg": {
-            fontSize: "18px",
-            marginLeft: "20px"
+        "&& a": {
+            textDecoration: "none",
+            color: theme.palette.primary.light,
+            "& svg": {
+                fontSize: "18px",
+                marginLeft: "20px",
+                marginBottom: "-3px"
+            }
         }
     }
 });
